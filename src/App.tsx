@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import Button from './components/button/Buttons'
 import './App.css';
 
 function App() {
+  const [counter, setCounter] = useState(2);
+  let cars = ["Saab", "Volvo", "BMW"];
+
+  const decrement = () => {
+    setCounter(counter - 1)
+  }
+
+  useEffect(() => {
+    const element = document.getElementById(`${counter}`)
+    if (counter % 2 === 0 && element) {
+      element.style.backgroundColor = "red"
+    }
+    if (counter % 2 === 1 && element) {
+      element.style.backgroundColor = "blue"
+    }
+  }, [counter])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button click={() => setCounter(counter + 1)} title="Incrementa">Increment</Button>
+      <Button click={() => decrement()} title="Decrementa">Increment</Button>
+      <h1 className="counter" id={`${counter}`} key={counter}>{counter}</h1>
+      {cars.map((el, i) => {
+        return <p key={i}>{el}</p>
+      })}
+      {cars.map((el, i) => {
+        return el.includes('S') && <p key={i}>{el}</p>;
+      })}
+    </>
   );
 }
 
