@@ -1,10 +1,16 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import {IconButton} from "../../shared/IconButtons/IconButton";
 import { plus } from 'react-icons-kit/typicons/plus';
 import { minus } from 'react-icons-kit/typicons/minus';
+import { userDetailContext } from "../Costli/Costli";
 
 export const DatePicker:React.FC = ()=>{
+
     const [DateTime, setDateTime] = useState<Date>(new Date);
+
+    const context = useContext(userDetailContext)
+
+
 
     const switchMonth = (operator:number)=>{
         DateTime.setMonth(DateTime.getMonth() + operator)
@@ -17,6 +23,7 @@ export const DatePicker:React.FC = ()=>{
             <IconButton icon={minus} switcher={()=>switchMonth(-1)}/>
             {DateTime.getMonth()+1}, {DateTime.getFullYear()}
             <IconButton icon={plus} switcher={()=>switchMonth(1)} />
+            {context}
         </div>
     )
 }

@@ -1,13 +1,18 @@
 
-import{Header} from '../Header/Header';
+import React, { useState } from 'react';
+import { Header } from '../Header/Header';
 
-export const Costli:React.FC = ()=>{
+export const userDetailContext = React.createContext('')
 
+export const Costli: React.FC = () => {
+    const [state, setstate] = useState('initialState')
 
-    return(
-        <div className="flex flex-column p-8 w-full h-full">
-            <Header/>
+    return (
+        <userDetailContext.Provider value={state}>
+            <div className="flex flex-column p-8 w-full h-full">
+                <Header />
 
-        </div>
+            </div>
+        </userDetailContext.Provider>
     )
 }
