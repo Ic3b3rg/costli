@@ -50,9 +50,9 @@ export const DatePicker: React.FC = () => {
 
     return (
         <div className="flex-row flex justify-center p-4 space-x-4">
-            <IconButton icon={minus} switcher={() => switchMonth(-1)} />
+            <IconButton icon={minus} onClick={() => switchMonth(-1)} />
             <p className="font-semibold text-primary text-xl">{numberToMonth(DateTime.getMonth())} {DateTime.getFullYear()}</p>
-            <IconButton icon={plus} switcher={() => switchMonth(1)} />
+            <IconButton icon={plus} onClick={() => switchMonth(1)} />
         </div>
     )
 }
