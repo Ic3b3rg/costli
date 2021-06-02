@@ -7,7 +7,7 @@ import { Months } from '../../shared/enums/months.enum';
 
 export const DatePicker: React.FC = () => {
 
-    const [DateTime, setDateTime] = useState<Date>(new Date);
+    const [DateTime, setDateTime] = useState<Date>(new Date());
 
     const context = useContext(userDetailContext)
 
