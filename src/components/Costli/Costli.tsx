@@ -94,6 +94,8 @@ export const Costli: React.FC = () => {
 
     };
     const removeTransaction = (id:string|Date|number) => {
+
+        
         console.log(id)
 
     };
