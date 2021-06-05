@@ -11,14 +11,17 @@ import { trash } from 'react-icons-kit/typicons/trash';
 import { IconButton } from '../../shared/IconButtons/IconButton';
 
 export interface IItemCard {
+    id:string|Date|number;
     amount: number;
     description: string;
     unit?: string;
     type: TransactionType;
     createdAt: string;
+    editTransaction: ()=>void;
+    removeTransaction: (id:string|Date|number)=>void;
 }
 
-export const ItemCard: React.FC<IItemCard> = ({ amount, description, type, unit, createdAt }) => {
+export const ItemCard: React.FC<IItemCard> = ({ id, amount, description, type, unit, createdAt, editTransaction, removeTransaction }) => {
 
     return (
         <div className="w-full h-20 flex flex-row border border-primary bg-ultralight rounded-3xl p-4 space-x-4 shadow items-center">
@@ -28,8 +31,8 @@ export const ItemCard: React.FC<IItemCard> = ({ amount, description, type, unit,
                 <p className="text-dark">{createdAt}</p>
             </div>
             <p className="text-dark font-medium flex-auto">{description}</p>
-            <IconButton icon={pencil} onClick={() => { }} className="w-12 h-12 items-center hover:text-dark hover:border-dark" size={28} />
-            <IconButton icon={trash} onClick={() => { }} className="w-12 h-12 items-center hover:text-red-700 hover:border-red-700" size={28} />
+            <IconButton icon={pencil} onClick={() => editTransaction()} className="w-12 h-12 items-center hover:text-dark hover:border-dark" size={28} />
+            <IconButton icon={trash} onClick={() => removeTransaction(id)} className="w-12 h-12 items-center hover:text-red-700 hover:border-red-700" size={28} />
         </div>
     );
 

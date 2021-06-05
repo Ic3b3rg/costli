@@ -4,7 +4,7 @@ import { Header } from '../Header/Header';
 import { IStatisticCard, StatisticsCard } from '../StatisticCard/StatisticCard';
 import { Form } from '../Form/Form';
 import { IItemCard, ItemCard } from '../ItemCard/ItemCard';
-import { useGetTransiction } from '../../requestsQL/useTransaction';
+import { useAddTransaction, useGetTransiction } from '../../requestsQL/useTransaction';
 
 export const userDetailContext = React.createContext([{}])
 
@@ -87,33 +87,37 @@ export const Costli: React.FC = () => {
 
     const consolla = () => {
         console.log(data, error, isLoading, isSuccess)
-    }
+    };
+
+    const editTransaction = () => {
+        console.log()
+
+    };
+    const removeTransaction = (id:string|Date|number) => {
+        console.log(id)
+
+    };
 
 
     return (
         <userDetailContext.Provider value={state}>
-            <div className="flex flex-col p-8 w-full h-full space-y-8 items-center" onClick={consolla}>
+            <div className="flex flex-col p-8 w-full h-full space-y-8 items-center">
                 <Header />
-
                 <div className="w-4/5 flex flex-row justify-evenly items-center space-x-4">
                     {STATISTICS_CARDS.map((card, index) => <StatisticsCard label={card.label} value={card.value} key={index} />)}
                 </div>
-
                 <Form getData={getFormData} />
-
                 <span className="w-5/6 border border-primary"></span>
-
-                <div className="flex flex-col space-y-4 w-4/5 p-4 overflow-y-auto">
-                    {
-                        state.sort((a, b) => {
-                            // Turn your strings into dates, and then subtract them
-                            // to get a value that is either negative, positive, or zero.
-                            return new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf();
-                        }).map((item, index) => <ItemCard key={index} amount={item.amount} description={item.description} type={item.type} unit={item.unit} createdAt={item.createdAt} />)
-                    }
-                </div>
-
-
+                {
+                    state.length > 0 && <div className="flex flex-col space-y-4 w-4/5 p-4 overflow-y-auto">
+                        {
+                            state
+                                .sort((a, b) => {
+                                    return new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf();
+                                }).map((item, index) => <ItemCard key={index} id={item.id} amount={item.amount} description={item.description} editTransaction={editTransaction} removeTransaction={removeTransaction} type={item.type} unit={item.unit} createdAt={item.createdAt} />)
+                        }
+                    </div>
+                }
             </div>
         </userDetailContext.Provider>
     )
