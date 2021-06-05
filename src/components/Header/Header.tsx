@@ -1,11 +1,11 @@
-import {DatePicker} from '../DatePicker/DatePicker'
-export const Header:React.FC = ()=>{
+import { DatePicker } from '../DatePicker/DatePicker'
+export const Header: React.FC = () => {
 
 
-    return(
-        <div className="flex flex-row p-4 w-full justify-between">
-            <h1 className="font-bold text-2xl ">Header</h1>
-            <DatePicker/>
+    return (
+        <div className="w-full h-20 flex flex-row p-4 justify-between items-center">
+            <h1 className="font-bold text-4xl text-dark">Costli</h1>
+            <DatePicker />
         </div>
     )
 }
