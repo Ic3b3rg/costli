@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "react-query";
 //importa GraphQL-request client e GraphQueryLanguage(gql)
 import { GraphQLClient, gql } from "graphql-request";
 
-const API_URL = `https://costli-be.herokuapp.com/graphql`;
+const API_URL = `http://localhost:4000/graphql`;
 
 const graphQLClient = new GraphQLClient(API_URL);
 //     , {
@@ -40,12 +40,14 @@ export function useAddTransaction() {
   });
 }
 
-export function useGetTransiction() {
-  return useQuery("get-transaction-list", async () => {
+export function useGetTransiction(month: number) {
+  return useQuery(["get-transaction-list", month], async () => {
     const { getTransactionList } = await graphQLClient.request(
       gql`
-        query {
-          getTransactionList {
+        query getTransactonList(
+          $month: Int!
+        ){
+          getTransactionList(month: $month) {
             id
             description
             amount
@@ -53,8 +55,32 @@ export function useGetTransiction() {
             createdAt
           }
         }
-      `
+      `, { month }
     );
     return getTransactionList;
+  });
+}
+
+export function useDeleteTransaction() {
+  return useMutation<any, any, any>(async ({ id }) => {
+    const { deleteTransaction } = await graphQLClient.request(
+      gql`
+        mutation deleteTransaction(
+          $id: ID!
+        ) {
+          deleteTransaction(
+            id: $id
+          ) {
+            id
+            description
+            amount
+            type
+            createdAt
+          }
+        }
+      `,
+      { id }
+    );
+    return deleteTransaction;
   });
 }

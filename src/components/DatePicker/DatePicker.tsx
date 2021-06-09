@@ -4,8 +4,11 @@ import { plus } from 'react-icons-kit/typicons/plus';
 import { minus } from 'react-icons-kit/typicons/minus';
 import { userDetailContext } from "../Costli/Costli";
 import { Months } from '../../shared/enums/months.enum';
+export interface IDatePicker {
+    getCurrentDate: (date: any) => void
+}
 
-export const DatePicker: React.FC = () => {
+export const DatePicker: React.FC<IDatePicker> = ({ getCurrentDate }) => {
 
     const [DateTime, setDateTime] = useState<Date>(new Date());
 
@@ -17,7 +20,9 @@ export const DatePicker: React.FC = () => {
         DateTime.setMonth(DateTime.getMonth() + operator)
         console.log('switchMonth')
         setDateTime(new Date(DateTime))
+        getCurrentDate(DateTime);
     }
+
 
     const numberToMonth = (monthNumber: number) => {
         switch (monthNumber) {
