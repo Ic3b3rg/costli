@@ -49,9 +49,9 @@ export const Costli: React.FC = () => {
         console.log(date);
     }
 
-    const consolla = () => {
-        console.log(data, error, isLoading, isSuccess)
-    };
+    // const consolla = () => {
+    //     console.log(data, error, isLoading, isSuccess)
+    // };
 
     const editTransaction = () => {
         console.log()
