@@ -2,7 +2,7 @@
 import { useMutation, useQuery } from "react-query";
 //importa GraphQL-request client e GraphQueryLanguage(gql)
 import { gql } from "graphql-request";
-import {graphQLClient} from './gql-client';
+import { graphQLClient } from './gql-client';
 
 export function useAddTransaction() {
   return useMutation<any, any, any>(async ({ description, amount, type }) => {
@@ -40,11 +40,18 @@ export function useGetTransiction(month: number) {
           $month: Int!
         ){
           getTransactionList(month: $month) {
-            id
-            description
-            amount
-            type
-            createdAt
+            transactions{
+              id
+              description
+              amount
+              type
+              createdAt
+            },
+            summary{
+              inSum,
+              outSum,
+              balance
+            }
           }
         }
       `, { month }
