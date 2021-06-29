@@ -1,5 +1,5 @@
 //importo react Query
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 //importa GraphQL-request client e GraphQueryLanguage(gql)
 import { gql } from "graphql-request";
 import { graphQLClient } from './gql-client';
@@ -28,7 +28,6 @@ export function useLogin() {
     return loginUser;
   }, {
     onSuccess: (data) => {
-      console.log("DATA", data);
       sessionStorage.setItem('user', data.email);
       sessionStorage.setItem('token', data.token);
       graphQLClient.setHeader('authorization', data.token);

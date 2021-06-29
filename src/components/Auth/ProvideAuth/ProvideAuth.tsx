@@ -54,7 +54,6 @@ const fakeAuth = {
   signin(cb: any) {
     fakeAuth.isAuthenticated = true;
     setTimeout(cb, 100); // fake async
-    console.log(this.isAuthenticated)
   },
   signout(cb: any) {
     fakeAuth.isAuthenticated = false;

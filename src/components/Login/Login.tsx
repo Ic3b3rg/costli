@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
     useHistory,
     useLocation
@@ -8,8 +8,6 @@ import { useFormik } from "formik";
 
 import { authContext } from '../Auth/ProvideAuth/ProvideAuth';
 import { useLogin } from '../../requestsQL/useLogin'
-import { Mutation } from "react-query/types/core/mutation";
-import { UseMutationResult } from "react-query/types/react/types";
 
 
 export const Login: React.FC = () => {
@@ -22,13 +20,12 @@ export const Login: React.FC = () => {
     const login = () => {
         auth.signin(() => {
             history.replace(from);
-            console.log(from)
         });
     };
     const formik = useFormik({
         initialValues: {
-            email: 's.ceccarini94@gmail.com',
-            password: 'Password123'
+            email: '',
+            password: ''
         },
 
         onSubmit: ({ email, password }) => {

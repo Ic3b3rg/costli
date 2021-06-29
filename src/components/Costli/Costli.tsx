@@ -54,21 +54,15 @@ export const Costli: React.FC = () => {
 
 
     const getFormData = (values: any) => {
-        console.log(values);
         refetch();
     };
 
     const getCurrentDate = (date: Date) => {
         setCurrentDate(date.getMonth());
-        console.log(date);
     }
 
-    // const consolla = () => {
-    //     console.log(data, error, isLoading, isSuccess)
-    // };
-
     const editTransaction = () => {
-        console.log()
+        //console.log()
 
     };
 

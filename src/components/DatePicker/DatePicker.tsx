@@ -18,7 +18,6 @@ export const DatePicker: React.FC<IDatePicker> = ({ getCurrentDate }) => {
 
     const switchMonth = (operator: number) => {
         DateTime.setMonth(DateTime.getMonth() + operator)
-        console.log('switchMonth')
         setDateTime(new Date(DateTime))
         getCurrentDate(DateTime);
     }
