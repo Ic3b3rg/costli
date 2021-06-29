@@ -1,5 +1,6 @@
-
+import { StatisticCardType } from '../../shared/enums/statistic-card-type.enum'
 export interface IStatisticCard {
+    type: StatisticCardType,
     unit?: string;
     value: number;
     label: string;

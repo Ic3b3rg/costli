@@ -21,8 +21,8 @@ export const Form: React.FC<{ getData: any }> = ({ getData }) => {
             type: Boolean(TransactionType.ENTRATA)
         },
         onSubmit: ({ description, value, type }) => {
-            addTransaction.mutate({ description, amount: parseFloat(value), type })
-            getData({ description });
+            addTransaction.mutate({ description, amount: parseFloat(value), type }, { onSuccess: () => { getData({ description }); formik.resetForm() } })
+
         },
     });
 
@@ -37,7 +37,7 @@ export const Form: React.FC<{ getData: any }> = ({ getData }) => {
                     <label className="flex items-center cursor-pointer space-x-2">
                         <div className=" text-green-600 font-semibold">
                             Entrata
-                    </div>
+                        </div>
                         <div className="relative">
                             <input type="checkbox" id="type" className="sr-only" checked={formik.values.type} onChange={formik.handleChange} />
                             <div className="block bg-ultralight w-14 h-8 rounded-full border border-dark"></div>
@@ -45,7 +45,7 @@ export const Form: React.FC<{ getData: any }> = ({ getData }) => {
                         </div>
                         <div className="text-red-700 font-semibold">
                             Uscita
-                    </div>
+                        </div>
                     </label>
 
                 </div>
